@@ -22,6 +22,7 @@
   3. [获取稿件最新版本详细信息](#3_3)
   4. [获取稿件所有版本详细信息](#3_4)
   5. [保存稿件](#3_5)
+  6. [删除文件](#3_6)
  4. [逻辑目录](#4_1)
   1. [获取逻辑目录](#4_1)   
  5. [资源主分类](#5_1)
@@ -956,6 +957,7 @@ fileName|资源文件名称|string|是
 ----|-----|-----|-----
 resourceId|string|稿件id|是
 fileNameSuffix|string|文件名后缀(不传递该参数时返回的相对路径和文件名称为空)|否
+isAttachment|boolean|是否是附件类型（默认否）|否
 
 ###response
 
@@ -965,8 +967,12 @@ fileNameSuffix|string|文件名后缀(不传递该参数时返回的相对路径
   "uncRootPath": "\\\\192.168.8.240\\storage\\path\\Low-Res",			//unc根路径
   "localRootPath": "/mnt/storage/path/Low-Res",							//本机根路径
   "httpRootPath": "http://192.168.8.244/crelow",			//流媒体根路径
-  "RelativePath": "2017/06/22",			//相对路径
-  "fileName": "723FCB2B-C615-44B0-9897-69C1221A29FF_LOW_0.mp4"		//文件名称
+  "relativePath": "2017/06/22",			//相对路径
+  "fileName": "723FCB2B-C615-44B0-9897-69C1221A29FF_LOW_0.mp4",		//文件名称
+  "fileTypeId":"ATTACHMENT", //文件类型
+  "fullName":"\\\\192.168.8.240\\storage\\path\\Other/2017/06/23/28CFB8E9-6714-42C4-B6D9-E5DE48632562_IMAGE_0.jpg",//文件全路径
+  "fullPath":"\\\\192.168.8.240\\storage\\path\\Other/2017/06/23", //文件的目录全路径"
+  "ftpPath": "/Other" //ftp路径
 }
 ~~~
 
@@ -987,8 +993,10 @@ fileNameSuffix|string|文件名后缀(不传递该参数时返回的相对路径
 {
   "fileId": "fjq9348fj823u49f",
   "fileName": "ffj09-fj349fj-jf34jf0f-f203fj_IMAGE_0.png",
-  "isAttachment": false, 
-  "filePath": "/mnt/data/2017/06/22/"
+  "fileTypeId":"ATTACHMENT",
+  "extension":"jpg",
+  "fileSize":20000,
+  "relativePath":"2017/06/23"
 }
 ~~~
 
@@ -997,8 +1005,10 @@ fileNameSuffix|string|文件名后缀(不传递该参数时返回的相对路径
 resourceId|string|稿件id(该id在客户端维护，此时cre可能并未存在该资源)|是
 fileId|string|文件id|是
 fileName|string|文件名称|是
-fileType|boolean|是否为附件|是
-filePath|string|文件存储路径|是
+fileTypeId|string|文件类型ID|是
+extension|string|文件后缀名|是
+fileSize|int|文件大小|是
+relativePath|string|相对路径|是
 
 ###response
 
@@ -1150,6 +1160,26 @@ attachmentList[].fileId|string|附件id|是
 ~~~
 {
   "info": "失败描述"
+}
+~~~
+<h3 id="3_6">3.6删除文件</h3>
+
+###request
+
+`DELETE http://server:port/cre/api/resources/richText/{resoureId}/file/{fileId}`
+
+名称| 描述| 类型 |是否必须
+----|-----|-----|-----
+resourceId|资源Id|string|是
+fileId|文件id|string|是
+
+###response
+成功:200
+
+失败:400/500
+~~~
+{
+	"info": "失败描述"
 }
 ~~~
 
