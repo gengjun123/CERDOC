@@ -1052,8 +1052,9 @@ resourceId|string|稿件id|是
   "attachmentList": [
     {
       "fileId": "aof39rfj90w3rj2",			//附件id
-	  "fileName": "file.zip",						//附件名称
-      "httpPath": "http://192.168.8.244/file.zip"	//附件的http路径
+	  "fileName": "file.jpg",						//附件名称
+      "httpPath": "http://192.168.8.244/file.jpg"	//附件的http路径
+	  "fileType": "IMAGE"						//文件类型，IMAGE(图片)，DOCUMENT(文档)，HDV(高清视频)，SDV(标清视频)
     }
   ]
 }
