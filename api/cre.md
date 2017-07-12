@@ -23,11 +23,11 @@
   4. [获取稿件所有版本详细信息](#3_4)
   5. [保存稿件](#3_5)
   6. [删除文件](#3_6)
-  7. [获取附件列表](#3_7)
  4. [逻辑目录](#4_1)
   1. [获取逻辑目录](#4_1)   
  5. [资源主分类](#5_1)
   1. [获取资源主分类](#5_1)
+  2. [获取资源操作信息](#5_2)
 
 <h3 id="1_1">1.1用户查询</h3>
 
@@ -818,6 +818,9 @@ enumChannelSamplesFormat=\"1\"/></sStreamMediaInfo></MEDIAINFO>",
             "duration": 1502,
             "topicId": "EE2104CB-619B-446D-8E00-9BAB3340CEAD",
             "topicType":1,
+			"topicParticipantId":"zhaoyangkun,zhangsan",
+			"topicPrincipalId":"zhaoyangkun",
+			"topicCreaterId":"zhaoyangkun",
             "files": [
                 {
                     "fileId": "C648E3DF-E107-42FF-A25E-1D62380DA2B4",
@@ -848,6 +851,9 @@ enumChannelSamplesFormat=\"1\"/></sStreamMediaInfo></MEDIAINFO>",
             "source":"DYEIDT",
             "topicId":"681EDCD3-3AA1-4F79-89BB-4214941B2558",
             "topicType": 1,
+			"topicParticipantId":"zhaoyangkun,zhangsan",
+			"topicPrincipalId":"zhaoyangkun",
+			"topicCreaterId":"zhaoyangkun",
             "files": [
                 {
                     "fileId": "C648E3DF-E107-42FF-A25E-1D62380DA2B4",
@@ -877,6 +883,9 @@ ccid|	编目类|string|否
 duration|资源时长,单位（帧 ）|long|是
 topicId|目录id|string|是
 topicType|目录类型1：素材 2：产品|int|是
+topicParticipantId|参与人id|string|是
+topicPrincipalId|负责人id|string|是
+topicCreaterId|创建人id|string|是
 files|
 fileId|资源文件id|string|是
 fileName|资源文件名称|string|是
@@ -901,6 +910,9 @@ source|	来源系统|string|是
 scpInId”|入库参数id,可选，如果传递按照此id匹配入库参数，如果不传递，则通过source获取入库参数|string|否
 topicId|选题目录id|string|是
 topicType|选题目录类型1：素材 2：产品|int|是
+topicParticipantId|参与人id|string|是
+topicPrincipalId|负责人id|string|是
+topicCreaterId|创建人id|string|是
 files|
 fileId|资源文件id|string|是
 fileName|资源文件名称|string|是
@@ -1185,35 +1197,6 @@ fileId|文件id|string|是
 }
 ~~~
 
-<h3 id="3_7">3.7获取附件列表</h3>
-
-###request
-
-`GET http://server:port/cre/api/resources/richText/{resoureId}/attachments`
-
-名称| 描述| 类型 |是否必须
-----|-----|-----|-----
-resourceId|资源Id|string|是
-
-###response
-成功:200
-~~~
-[
-    {
-      "fileId": "aof39rfj90w3rj2",			//附件id
-	  "fileName": "file.jpg",						//附件名称
-      "httpPath": "http://192.168.8.244/file.jpg"	//附件的http路径
-	  "fileType": "IMAGE"						//文件类型，IMAGE(图片)，DOCUMENT(文档)，HDV(高清视频)，SDV(标清视频)
-    }
-  ]
-~~~
-失败:400/500
-~~~
-{
-	"info": "失败描述"
-}
-~~~
-
 <h3 id="4_1">4.1获取逻辑目录</h3>
 
 ###request
@@ -1276,6 +1259,36 @@ userId|用户id(url参数)|string|是
     "parentId": "0f9234jf092"
   }
 ]
+~~~
+失败:400~500
+~~~
+{
+  "info": "失败描述"
+}
+~~~
+<h3 id="5_2">5.2获取资源操作信息</h3>
+
+###request
+
+`GET http://server:port/cre/api/searchAuditLogging？resourceId=resourceId&limit=0&start=10`
+
+名称| 描述| 类型 |是否必须
+----|-----|-----|-----
+resourceId|资源id|string|是
+limit|分页条件，每页显示多少条|int|是
+start|分页条件，从第几条开始|int|是
+
+###response
+成功:200
+~~~
+{
+  "limit": 10,
+  "items": [],
+  "totalCount": 0,
+  "start": 1,
+  "currentPage": 1,
+  "totalPage": 0
+}
 ~~~
 失败:400~500
 ~~~
