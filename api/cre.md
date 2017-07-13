@@ -23,6 +23,7 @@
   4. [获取稿件所有版本详细信息](#3_4)
   5. [保存稿件](#3_5)
   6. [删除文件](#3_6)
+  7. [获取附件列表](#3_7)
  4. [逻辑目录](#4_1)
   1. [获取逻辑目录](#4_1)   
  5. [资源主分类](#5_1)
@@ -1189,6 +1190,36 @@ fileId|文件id|string|是
 
 ###response
 成功:200
+
+失败:400/500
+~~~
+{
+	"info": "失败描述"
+}
+~~~
+
+<h3 id="3_7">3.7获取附件列表</h3>
+
+###request
+
+`GET http://server:port/cre/api/resources/richText/{resoureId}/attachments`
+
+名称| 描述| 类型 |是否必须
+----|-----|-----|-----
+resourceId|资源Id|string|是
+
+###response
+成功:200
+~~~
+[
+    {
+      "fileId": "aof39rfj90w3rj2",          //附件id
+      "fileName": "file.jpg",                       //附件名称
+      "httpPath": "http://192.168.8.244/file.jpg"   //附件的http路径
+      "fileType": "IMAGE"                       //文件类型，IMAGE(图片)，DOCUMENT(文档)，HDV(高清视频)，SDV(标清视频)
+    }
+  ]
+~~~
 
 失败:400/500
 ~~~
