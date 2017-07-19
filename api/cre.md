@@ -26,9 +26,8 @@
   7. [获取附件列表](#3_7)
  4. [逻辑目录](#4_1)
   1. [获取逻辑目录](#4_1)   
- 5. [资源主分类](#5_1)
-  1. [获取资源主分类](#5_1)
-  2. [获取资源操作信息](#5_2)
+ 5. [资源轨迹](#5_1)
+  1. [获取资源操作信息](#5_1)
 
 <h3 id="1_1">1.1用户查询</h3>
 
@@ -1089,25 +1088,33 @@ resourceId|string|稿件id|是
 名称| 类型| 描述 |是否必须
 ----|-----|-----|-----
 resourceId|string|稿件id|是
+isEveryOneLatest|boolean|是否值获取每个人最新的版本|否
+versionList|string|版本号，可传递多个 '?versionList=version_1&versionList=version2&versionList=version_3'，如果传递了该参数，isEveryOneLatest参数无效|否
 ###response
 
 成功:200
 ~~~
 [{
+  "version": "version_1",
   "content": "<p>习近平</p>参访",
   "authorId": "faweofjq9in0dfqj23o",
   "author": "张三",
-  "createTime": 128308102398
+  "createTime": 128308102398,
+  "color": "#9999FF"
 },{
+  "version": "version_2",
   "content": "<p>习近平</p>参访新加坡",
   "authorId": "fafhw4rfn8w349f",
   "author": "李四"
-  "createTime": 128308102399
+  "createTime": 128308102399,
+  "color": "#FFFF33"
 },{
+  "version": "version_3",
   "content": "<p>习近平</p>与12日参访新加坡",
   "authorId": "faweofjq9in0dfqj23o",
   "author": "张三"
-  "createTime": 128308102490
+  "createTime": 128308102490,
+  "color": "#99CCFF"
 }]
 ~~~
 失败:400~500
@@ -1270,38 +1277,11 @@ userId|用户id(url参数)|string|是
 }
 ~~~
 
-<h3 id="5_1">5.1获取资源主分类</h3>
+<h3 id="5_1">5.1获取资源操作信息</h3>
 
 ###request
 
-`GET http://server:port/cre/api/resourceCategory`
-
-###response
-成功:200
-~~~
-[
-  {
-    "id": "0f9234jf092",			//分类id
-    "name": "体育",					//分类名称
-    "parentId": "-"					//分类树parentId，如果是根节点则为'-'
-  },{
-    "id": "fq3049j092fr",
-    "name": "篮球",
-    "parentId": "0f9234jf092"
-  }
-]
-~~~
-失败:400~500
-~~~
-{
-  "info": "失败描述"
-}
-~~~
-<h3 id="5_2">5.2获取资源操作信息</h3>
-
-###request
-
-`GET http://server:port/cre/api/searchAuditLogging？resourceId=resourceId&limit=0&start=10`
+`GET http://server:port/cre/api/searchAuditLogging?resourceId=resourceId&limit=0&start=10`
 
 名称| 描述| 类型 |是否必须
 ----|-----|-----|-----
@@ -1314,8 +1294,17 @@ start|分页条件，从第几条开始|int|是
 ~~~
 {
   "limit": 10,
-  "items": [],
-  "totalCount": 0,
+  "items": [{
+            "created": "2017-07-19 10:01:48",			//操作时间
+            "id": "4c56bada-485a-4a63-8f1f-94ace4253765",
+            "describe": "",								//操作描述
+            "operateDescribe": "新建",					//操作内容
+            "operator": {
+                "uid": "e18a0f771ac4485fa9107d8382326e57",
+                "uname": "黄少明"						//操作人
+            }
+        }],
+  "totalCount": 1,
   "start": 1,
   "currentPage": 1,
   "totalPage": 0
