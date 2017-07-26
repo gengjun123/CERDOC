@@ -1297,7 +1297,8 @@ start|分页条件，从第几条开始|int|是
   "items": [{
             "created": "2017-07-19 10:01:48",			//操作时间
             "id": "4c56bada-485a-4a63-8f1f-94ace4253765",
-            "describe": "",								//操作描述
+            "describe": "",								//操作描述（审核意见）
+			"detailOperation":"",						//操作详细描述
             "operateDescribe": "新建",					//操作内容
             "operator": {
                 "uid": "e18a0f771ac4485fa9107d8382326e57",
