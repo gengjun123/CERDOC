@@ -10,6 +10,9 @@
   2. [获取组织结构](#1_2)  
   3. [获取人员权限信息](#1_3)
   4. [根据id获取用户](#1_4)
+  5. [用户查询-new](#1_5)
+  6. [获取组织结构-new](#1_6)
+  7. [获取人员权限信息-new](#1_7)
  2. [选题目录](#2_1)
   1. [新增选题目录](#2_1)
   2. [修改选题目录](#2_2)
@@ -346,6 +349,253 @@ RequestBody
 }
 ~~~
 
+<h3 id="1_5">1.5用户查询-new</h3>
+
+###request
+
+`[POST] http://server:port/cre/api/authorization/users/new`
+
+~~~
+{
+  "userName": "黄",
+  "privilegeInfos": [
+    {
+      "privilegeId": "PID_PRODUCT_STATUS_AUDIT",
+      "status": "待审核",
+      "departmentId": "4A21AB47-3441-44DB-8C40-96CCF57BC531"
+    },
+    {
+      "privilegeId": "PID_PRODUCT_STATUS_AUDIT",
+      "status": "审核通过",
+      "departmentId": "4A21AB47-3441-44DB-8C40-96CCF57BC531"
+    }
+  ]
+}
+~~~
+
+名称| 类型| 描述 |是否必须
+----|-----|-----|-----
+userName|string|用户名（支持模糊查询）|否
+privilegeId|string|权限id|否
+departmentId|string|主分类id|否
+status|string|状态（待审核、审核通过、已驳回、已签发）|否
+注：多个privilegeInfos会取交集
+
+###response
+成功：200
+~~~
+RequestBody
+{
+  "totalCount": 2,                             //总数
+  "userList": [
+        {
+            "id": "zhangsan",					//用户ID，最长不超过36个字符
+            "name": "张三",	  					//用户名
+            "workNo": "",								//工号
+            "organizationId": "23voeruqtp398ih98",       //用户所属组织结构ID
+			"organizationName": "设计部",				//用户所属组织结构名称
+            "description": "",							//描述，最长不超过256个字符
+            "status": 0,								//状态，0: 正常, 1: 挂起, 默认值为0
+            "tel": "13912345678",						//电话
+            "mail": "zhangsan@abc.com",					//邮箱
+            "type": 0,									//状态，0: 本地用户, 1：统一认证用户, 默认值为0
+            "personalSpaceFlag": 0,						//开启个人空间标识, 0: 不开启, 1: 开启, 默认值为0
+            "maxCapacity": 0,							//个人用户最大可用空间，单位字节
+            "iconUrl": "http://127.0.0.1:8080/user/zhangsan.jpg"	//用户肖像地址
+        },
+        {
+            "id": "lisi",
+            "name": "李四",
+            "workNo": "",
+            "organizationId": "aofsd8uvnau87yr9ah",           
+			"organizationName": "开发部",            
+            "description": "",
+            "status": 0,
+            "tel": "13912345678",
+            "mail": "lisi@abc.com",
+            "type": 0,
+            "personalSpaceFlag": 0,
+            "maxCapacity": 0,
+            "iconUrl": "http://127.0.0.1:8080/user/lisi.jpg"
+        }
+    ]
+}
+~~~
+失败：400~500
+~~~
+{
+  "info":"失败描述"
+}
+~~~
+
+<h3 id="1_6">1.6获取组织机构-new</h3>
+
+###request
+
+`[POST] http://server:port/cre/api/authorization/organization/load/mainclass`
+
+~~~
+{    
+    "userId": "e18a0f771ac4485fa9107d8382326e57",
+    "privilegePrefix":"PID_PRODUCT_FLODER_INCOMMINGDATA"
+    
+}
+~~~
+
+名称| 类型| 描述 |是否必须
+----|-----|-----|-----
+userId|string|用户ID|是
+privilegePrefix|string|权限前缀|是
+
+###response
+成功：200
+~~~
+RequestBody
+{
+    "commonResponse": {
+        "description": "",
+        "success": true
+    },
+    "organizationList": [
+        {
+            "id": "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+            "text": "人民日报",
+            "parentId": "5B0B5639-9594-4330-B8F2-EB782F9B57A3"
+        },
+        {
+            "id": "BEC81C9F-6734-4146-B422-F9DF85F95920",
+            "text": "要闻一部子部",
+            "parentId": "8F7FAE74-BDD3-401B-9D0C-D966B879F106"
+        },
+        {
+            "disabled": true,
+            "id": "5B0B5639-9594-4330-B8F2-EB782F9B57A3",
+            "text": "部门树",
+            "parentId": "#"
+        },
+        {
+            "disabled": true,
+            "id": "8F7FAE74-BDD3-401B-9D0C-D966B879F106",
+            "text": "要闻一部",
+            "parentId": "5B0B5639-9594-4330-B8F2-EB782F9B57A3"
+        }
+    ],
+    "totalCount": 4
+}
+~~~
+失败：400~500
+~~~
+{
+  "info":"失败描述"
+}
+~~~
+
+<h3 id="1_7">1.7获取人员权限信息-new</h3>
+
+###request
+
+`[POST] http://server:port/cre/api/authorization/privilege/load/mainclass`
+
+~~~
+{
+    "userId": "e18a0f771ac4485fa9107d8382326e57",
+    "privilegePrefix": "PID_PRODUCT_STATUS_BROWSER"
+}
+~~~
+
+名称| 类型| 描述 |是否必须
+----|-----|-----|-----
+userId|string|用户ID|是
+privilegePrefix|string|权限前缀|是
+
+###response
+成功：200
+~~~
+RequestBody
+{
+    "privilegeList": [
+        {
+            "id": "PID_PRODUCT_STATUS_BROWSER",
+            "name": "浏览",
+            "groupId": "-",
+            "description": "可浏览某一个状态的权限",
+            "departmentIdList": [
+                "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+                "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+                "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+                "4A21AB47-3441-44DB-8C40-96CCF57BC531"
+            ],
+            "statusList": [
+                1,
+                2,
+                3,
+                4,
+                1,
+                2,
+                3,
+                4
+            ],
+            "departmentList": [
+                {
+                    "id": "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                    "name": "要闻一部子部",
+                    "parentId": "8F7FAE74-BDD3-401B-9D0C-D966B879F106"
+                },
+                {
+                    "id": "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                    "name": "要闻一部子部",
+                    "parentId": "8F7FAE74-BDD3-401B-9D0C-D966B879F106"
+                },
+                {
+                    "id": "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                    "name": "要闻一部子部",
+                    "parentId": "8F7FAE74-BDD3-401B-9D0C-D966B879F106"
+                },
+                {
+                    "id": "BEC81C9F-6734-4146-B422-F9DF85F95920",
+                    "name": "要闻一部子部",
+                    "parentId": "8F7FAE74-BDD3-401B-9D0C-D966B879F106"
+                },
+                {
+                    "id": "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+                    "name": "人民日报",
+                    "parentId": "5B0B5639-9594-4330-B8F2-EB782F9B57A3"
+                },
+                {
+                    "id": "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+                    "name": "人民日报",
+                    "parentId": "5B0B5639-9594-4330-B8F2-EB782F9B57A3"
+                },
+                {
+                    "id": "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+                    "name": "人民日报",
+                    "parentId": "5B0B5639-9594-4330-B8F2-EB782F9B57A3"
+                },
+                {
+                    "id": "4A21AB47-3441-44DB-8C40-96CCF57BC531",
+                    "name": "人民日报",
+                    "parentId": "5B0B5639-9594-4330-B8F2-EB782F9B57A3"
+                }
+            ]
+        }
+    ],
+    "totalCount": 1,
+    "commonResponse": {
+        "success": true,
+        "description": ""
+    }
+}
+~~~
+失败：400~500
+~~~
+{
+  "info":"失败描述"
+}
+~~~
 
 <h3 id="2_1">2.1新增选题目录</h3>
 
