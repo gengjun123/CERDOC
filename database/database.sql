@@ -1,10 +1,10 @@
--- 添加数据库脚本时，以'-- ' + 当前日期(数据库的脚本注释格式)为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
+-- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
 
 
--- 2017-07-26
+-- 2017-07-26 赵洋坤
 ALTER TABLE `pdcre`.`tra_resource`     ADD COLUMN `DETAILOPERATION` VARCHAR(2000) NULL AFTER `DESCRIPTION`;
 
--- 2017-07-05
+-- 2017-07-05 董兵
 CREATE TABLE UPM_USERDEPARTMENTROLE (
           ID           VARCHAR(36) NOT NULL,
           ROLEID         VARCHAR(36) NOT NULL,
