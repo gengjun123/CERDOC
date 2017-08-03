@@ -1347,6 +1347,7 @@ versionList|string|版本号，可传递多个 '?versionList=version_1&versionLi
 [{
   "version": "version_1",
   "content": "<p>习近平</p>参访",
+  "contentText": "习近平参访",
   "authorId": "faweofjq9in0dfqj23o",
   "author": "张三",
   "createTime": 128308102398,
@@ -1354,13 +1355,15 @@ versionList|string|版本号，可传递多个 '?versionList=version_1&versionLi
 },{
   "version": "version_2",
   "content": "<p>习近平</p>参访新加坡",
+  "contentText": "习近平参访新加坡",
   "authorId": "fafhw4rfn8w349f",
   "author": "李四"
   "createTime": 128308102399,
   "color": "#FFFF33"
 },{
   "version": "version_3",
-  "content": "<p>习近平</p>与12日参访新加坡",
+  "content": "<p>习近平</p>于12日参访新加坡",
+  "contentText": "习近平于12日参访新加坡",
   "authorId": "faweofjq9in0dfqj23o",
   "author": "张三"
   "createTime": 128308102490,
@@ -1385,7 +1388,8 @@ versionList|string|版本号，可传递多个 '?versionList=version_1&versionLi
   "title": "习近平参访",
   "eyebrowHead": "习近平参访",
   "subtitle": "习近平参访",
-  "content": "<p>习近平</p>参访",	
+  "content": "<p>习近平</p>参访",
+  "contentText"	: "习近平参访",
   "folderId": "ajfqf09q3-faj0-fq903fjodfj",
   "editorId": "faweofjq9in0dfqj23o",		
   "authorName": "张三",							
@@ -1412,6 +1416,7 @@ title|string|标题|是
 eyebrowHead|string|引题|否
 subtitle|string|副标题|否
 content|string|稿件内容|是
+contentText|string|去掉html标签之后的富文本内容|否
 folderId|string|目录ID|是
 editorId|string|当前编辑人|是
 authorName|string|作者姓名|否
