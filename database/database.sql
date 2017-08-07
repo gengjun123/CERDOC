@@ -1,6 +1,9 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
 
 
+-- 2017-08-07 武子超
+ALTER TABLE `pdcre`.`com_basicinfo`     ADD COLUMN `COLLECTORIDS` VARCHAR(2000) NULL;
+
 -- 2017-07-26 赵洋坤
 ALTER TABLE `pdcre`.`tra_resource`     ADD COLUMN `DETAILOPERATION` VARCHAR(2000) NULL AFTER `DESCRIPTION`;
 
