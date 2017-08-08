@@ -1,6 +1,6 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
 
--- 2017-08-08 董兵 
+-- 2017-08-08 董兵
 insert into upm_privilege(id,name,aliasname,authorized_type,groupid,IS_DEPARTMENT_RELATED,type,description) values ('PID_PRODUCT_XHS_TXT','新华社文字稿','新华社文字稿','','-',1,1,'新华社文字稿');
 insert into upm_privilege(id,name,aliasname,authorized_type,groupid,IS_DEPARTMENT_RELATED,type,description) values ('PID_PRODUCT_XHS_IMAGE','新华社图片','新华社图片','','-',1,1,'新华社图片');
 
