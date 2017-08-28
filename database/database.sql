@@ -1,43 +1,4 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
--- 2017-08-16 武子超
-CREATE
- OR REPLACE VIEW VIEW_RESOURCE_INFO AS
-SELECT
-   `t`.`objectId` AS `objectId`,
-   `t`.`organizationId` AS `organizationId`,
-   `t`.`authorName` AS `authorName`,
-   `t`.`productStatus` AS `productStatus`,
-   `t`.`productRange` AS `productRange`,
-   `t`.`auditorId` AS `auditorId`,
-   `t`.`transmitId` AS `transmitId`,
-   `t`.`knowledge` AS `knowledge`,
-   `t`.`line` AS `line`,
-   `t`.`publisherId` AS `publisherId`,
-   `b`.`PUBLISHSTATUS` AS `PUBLISHSTATUS`,
-   `b`.`TOPICCREATERID` AS `TOPICCREATERID`,
-   `b`.`TOPICPARTICIPANTID` AS `TOPICPARTICIPANTID`,
-   `b`.`TOPICPRINCIPALID` AS `TOPICPRINCIPALID`,
-   `b`.`NAME` AS `name`,
-   `b`.`CCID` AS `ccid`,
-   `b`.`CREATED` AS `CREATED`,
-   `b`.`FOLDERID` AS `FOLDERID`,
-   `b`.`TYPE` AS `type`,
-   `b`.`CREATORID` AS `creatorid`,
-   `b`.`NEEDSIFTING` AS `needsifting`,
-   `b`.`DELETEFLAG` AS `deleteflag`,
-   `b`.`ROOTID` AS `Rootid`,
-   `b`.`COLLECTORIDS` AS `COLLECTORIDS`
-FROM
-   (
-      `view_resource_tmp` `t`
-      JOIN `com_basicinfo` `b` ON (
-         (
-            (`t`.`objectId` = `b`.`ID`)
-            AND (`b`.`DELETEFLAG` = 0)
-         )
-      )
-   )
-
 
 -- 文件表增加文件描述字段  2017-08-28 褚洪董
 -- 知识属性描述和知识属性ID关联表
@@ -220,6 +181,45 @@ INSERT INTO `ddm_knowledge_attribute_id` VALUES (uuid(), '12003', 'sports');
 INSERT INTO `ddm_knowledge_attribute_id` VALUES (uuid(), '12004', 'sports');
 INSERT INTO `ddm_knowledge_attribute_id` VALUES (uuid(), '12005', 'sports');
 INSERT INTO `ddm_knowledge_attribute_id` VALUES (uuid(), '12999', 'sports');
+
+-- 2017-08-16 武子超
+CREATE
+ OR REPLACE VIEW VIEW_RESOURCE_INFO AS
+SELECT
+   `t`.`objectId` AS `objectId`,
+   `t`.`organizationId` AS `organizationId`,
+   `t`.`authorName` AS `authorName`,
+   `t`.`productStatus` AS `productStatus`,
+   `t`.`productRange` AS `productRange`,
+   `t`.`auditorId` AS `auditorId`,
+   `t`.`transmitId` AS `transmitId`,
+   `t`.`knowledge` AS `knowledge`,
+   `t`.`line` AS `line`,
+   `t`.`publisherId` AS `publisherId`,
+   `b`.`PUBLISHSTATUS` AS `PUBLISHSTATUS`,
+   `b`.`TOPICCREATERID` AS `TOPICCREATERID`,
+   `b`.`TOPICPARTICIPANTID` AS `TOPICPARTICIPANTID`,
+   `b`.`TOPICPRINCIPALID` AS `TOPICPRINCIPALID`,
+   `b`.`NAME` AS `name`,
+   `b`.`CCID` AS `ccid`,
+   `b`.`CREATED` AS `CREATED`,
+   `b`.`FOLDERID` AS `FOLDERID`,
+   `b`.`TYPE` AS `type`,
+   `b`.`CREATORID` AS `creatorid`,
+   `b`.`NEEDSIFTING` AS `needsifting`,
+   `b`.`DELETEFLAG` AS `deleteflag`,
+   `b`.`ROOTID` AS `Rootid`,
+   `b`.`COLLECTORIDS` AS `COLLECTORIDS`
+FROM
+   (
+      `view_resource_tmp` `t`
+      JOIN `com_basicinfo` `b` ON (
+         (
+            (`t`.`objectId` = `b`.`ID`)
+            AND (`b`.`DELETEFLAG` = 0)
+         )
+      )
+   )
 
 -- 文件表增加文件描述字段  2017-08-11 褚洪董
 alter table spm_file add filedescrip varchar(200);
