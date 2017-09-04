@@ -1,0 +1,2 @@
+memcache启动
+./memcached -d -u root -p 11211 -m 2048 -I 4m -P /tmp/memcached.pid
