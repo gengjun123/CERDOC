@@ -1,4 +1,9 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
+--2017-09-12 褚洪董
+INSERT INTO `scp_environment` VALUES ('ISSUER_KEY_CMS', '签发', 0, '075d09a6-4940-4044-9964-ffea45450435:6c520350-760c-4923-85e5-75eead58ed3b', '', 'CMS签发id:key', 0, '2017-9-11 18:53:26', NULL, NULL);
+INSERT INTO `scp_environment` VALUES ('ISSUER_URL_CMS', '签发', 0, 'http://cmpc.hubpd.com/cmsapi/addarticle', '', 'CMS签发地址', 0, '2017-9-11 18:52:57', NULL, NULL);
+INSERT INTO `scp_environment` VALUES ('REVOKEISSUER_URL_CMS', '签发', 0, 'http://cmpc.hubpd.com/cmsapi/deleteArticle', '', 'CMS撤销签发地址', 0, '2017-9-11 18:52:43', NULL, NULL);
+INSERT INTO `scp_environment` VALUES ('COLUMN_URL_CMS', '签发', 0, 'http://cmpc.hubpd.com/cmsapi/getCatalog', '', 'CMS获取栏目地址', 0, '2017-9-11 18:52:57', NULL, NULL);
 
 -- 文件表增加文件描述字段  2017-08-28 褚洪董
 -- 知识属性描述和知识属性ID关联表
