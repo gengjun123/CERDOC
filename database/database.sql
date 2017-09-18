@@ -1,4 +1,166 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
+--2017-09-18 褚洪董
+-- mysql：
+        CREATE
+        OR REPLACE VIEW view_resource_tmp AS
+        SELECT
+        	`cob_audio_product`.`OBJECTID` AS `objectId`,
+        	`cob_audio_product`.`FIELD1088` AS `organizationId`,
+        	`cob_audio_product`.`FIELD1077` AS `authorName`,
+        	`cob_audio_product`.`FIELD1073` AS `productStatus`,
+        	`cob_audio_product`.`FIELD1089` AS `productRange`,
+        	`cob_audio_product`.`FIELD1091` AS `auditorId`,
+        	`cob_audio_product`.`FIELD1092` AS `transmitId`,
+        	`cob_audio_product`.`FIELD1093` AS `publisherId`,
+        	`cob_audio_product`.`FIELD1070` AS `topicId`,
+        	NULL AS `knowledge`,
+        	NULL AS `line`
+        FROM
+        	`cob_audio_product`
+        UNION ALL
+        SELECT
+            `cob_doc_product`.`OBJECTID` AS `objectId`,
+            `cob_doc_product`.`FIELD1088` AS `organizationId`,
+            `cob_doc_product`.`FIELD1077` AS `authorName`,
+            `cob_doc_product`.`FIELD1073` AS `productStatus`,
+            `cob_doc_product`.`FIELD1089` AS `productRange`,
+            `cob_doc_product`.`FIELD1091` AS `auditorId`,
+            `cob_doc_product`.`FIELD1092` AS `transmitId`,
+            `cob_doc_product`.`FIELD1093` AS `publisherId`,
+            `cob_doc_product`.`FIELD1070` AS `topicId`,
+            NULL AS `knowledge`,
+            NULL AS `line`
+        FROM
+            `cob_doc_product`
+        UNION ALL
+        SELECT
+            `cob_picture_product`.`OBJECTID` AS `objectId`,
+            `cob_picture_product`.`FIELD1088` AS `organizationId`,
+            `cob_picture_product`.`FIELD1077` AS `authorName`,
+            `cob_picture_product`.`FIELD1073` AS `productStatus`,
+            `cob_picture_product`.`FIELD1089` AS `productRange`,
+            `cob_picture_product`.`FIELD1091` AS `auditorId`,
+            `cob_picture_product`.`FIELD1092` AS `transmitId`,
+            `cob_picture_product`.`FIELD1093` AS `publisherId`,
+            `cob_picture_product`.`FIELD1070` AS `topicId`,
+            `cob_picture_product`.`FIELD1106` AS `knowledge`,
+            `cob_picture_product`.`FIELD1107` AS `line`
+        FROM
+            `cob_picture_product`
+        UNION ALL
+            SELECT
+                `cob_program_product`.`OBJECTID` AS `objectId`,
+                `cob_program_product`.`FIELD1088` AS `organizationId`,
+                `cob_program_product`.`FIELD1077` AS `authorName`,
+                `cob_program_product`.`FIELD1073` AS `productStatus`,
+                `cob_program_product`.`FIELD1089` AS `productRange`,
+                `cob_program_product`.`FIELD1091` AS `auditorId`,
+                `cob_program_product`.`FIELD1092` AS `transmitId`,
+                `cob_program_product`.`FIELD1093` AS `publisherId`,
+                `cob_program_product`.`FIELD1070` AS `topicId`,
+                NULL AS `knowledge`,
+                NULL AS `line`
+            FROM
+                `cob_program_product`
+            UNION ALL
+            SELECT
+                `cob_attach`.`OBJECTID` AS `objectId`,
+                `cob_attach`.`FIELD1088` AS `organizationId`,
+                `cob_attach`.`FIELD1077` AS `authorName`,
+                `cob_attach`.`FIELD1073` AS `productStatus`,
+                `cob_attach`.`FIELD1089` AS `productRange`,
+                `cob_attach`.`FIELD1091` AS `auditorId`,
+                `cob_attach`.`FIELD1092` AS `transmitId`,
+                `cob_attach`.`FIELD1093` AS `publisherId`,
+                null AS `topicId`,
+                NULL AS `knowledge`,
+                NULL AS `line`
+            FROM
+                `cob_attach`
+            UNION ALL
+            SELECT
+                `cob_fwbl`.`OBJECTID` AS `objectId`,
+                `cob_fwbl`.`FIELD1088` AS `organizationId`,
+                `cob_fwbl`.`FIELD1077` AS `authorName`,
+                `cob_fwbl`.`FIELD1073` AS `productStatus`,
+                `cob_fwbl`.`FIELD1089` AS `productRange`,
+                `cob_fwbl`.`FIELD1091` AS `auditorId`,
+                `cob_fwbl`.`FIELD1092` AS `transmitId`,
+                `cob_fwbl`.`FIELD1093` AS `publisherId`,
+                `cob_fwbl`.`FIELD1070` AS `topicId`,
+                `cob_fwbl`.`FIELD1106` AS `knowledge`,
+                `cob_fwbl`.`FIELD1107` AS `line`
+            FROM
+                `cob_fwbl`
+            UNION ALL
+            SELECT
+                `cob_vr_product`.`OBJECTID` AS `objectId`,
+                `cob_vr_product`.`FIELD1088` AS `organizationId`,
+                `cob_vr_product`.`FIELD1077` AS `authorName`,
+                `cob_vr_product`.`FIELD1073` AS `productStatus`,
+                `cob_vr_product`.`FIELD1089` AS `productRange`,
+                `cob_vr_product`.`FIELD1091` AS `auditorId`,
+                `cob_vr_product`.`FIELD1092` AS `transmitId`,
+                `cob_vr_product`.`FIELD1093` AS `publisherId`,
+                `cob_vr_product`.`FIELD1070` AS `topicId`,
+                NULL AS `knowledge`,
+                NULL AS `line`
+            FROM
+                `cob_vr_product`
+            UNION ALL
+            SELECT
+                `cob_h5_product`.`OBJECTID` AS `objectId`,
+                `cob_h5_product`.`FIELD1088` AS `organizationId`,
+                `cob_h5_product`.`FIELD1077` AS `authorName`,
+                `cob_h5_product`.`FIELD1073` AS `productStatus`,
+                `cob_h5_product`.`FIELD1089` AS `productRange`,
+                `cob_h5_product`.`FIELD1091` AS `auditorId`,
+                `cob_h5_product`.`FIELD1092` AS `transmitId`,
+                `cob_h5_product`.`FIELD1093` AS `publisherId`,
+                `cob_h5_product`.`FIELD1070` AS `topicId`,
+                NULL AS `knowledge`,
+                NULL AS `line`
+            FROM
+                `cob_h5_product`;
+
+        CREATE
+        OR REPLACE VIEW VIEW_RESOURCE_INFO AS
+       SELECT
+       	`t`.`objectId` AS `objectId`,
+       	`t`.`organizationId` AS `organizationId`,
+       	`t`.`authorName` AS `authorName`,
+       	`t`.`productStatus` AS `productStatus`,
+       	`t`.`productRange` AS `productRange`,
+       	`t`.`auditorId` AS `auditorId`,
+       	`t`.`transmitId` AS `transmitId`,
+       	`t`.`knowledge` AS `knowledge`,
+       	`t`.`line` AS `line`,
+       	`t`.`publisherId` AS `publisherId`,
+       	`t`.`topicId` AS `topicId`,
+       	`b`.`PUBLISHSTATUS` AS `PUBLISHSTATUS`,
+       	`b`.`TOPICCREATERID` AS `TOPICCREATERID`,
+       	`b`.`TOPICPARTICIPANTID` AS `TOPICPARTICIPANTID`,
+       	`b`.`TOPICPRINCIPALID` AS `TOPICPRINCIPALID`,
+       	`b`.`NAME` AS `name`,
+       	`b`.`CCID` AS `ccid`,
+       	`b`.`CREATED` AS `CREATED`,
+       	`b`.`FOLDERID` AS `FOLDERID`,
+       	`b`.`TYPE` AS `type`,
+       	`b`.`CREATORID` AS `creatorid`,
+       	`b`.`NEEDSIFTING` AS `needsifting`,
+       	`b`.`DELETEFLAG` AS `deleteflag`,
+       	`b`.`ROOTID` AS `Rootid`,
+       	`b`.`COLLECTORIDS` AS `COLLECTORIDS`
+       FROM
+       	(
+       		`view_resource_tmp` `t`
+       		JOIN `com_basicinfo` `b` ON (
+       			(
+       				(`t`.`objectId` = `b`.`ID`)
+       				AND (`b`.`DELETEFLAG` = 0)
+       			)
+       		)
+       	);
 --2017-09-12 褚洪董
 INSERT INTO `scp_environment` VALUES ('ISSUER_KEY_CMS', '签发', 0, '075d09a6-4940-4044-9964-ffea45450435:6c520350-760c-4923-85e5-75eead58ed3b', '', 'CMS签发id:key', 0, '2017-9-11 18:53:26', NULL, NULL);
 INSERT INTO `scp_environment` VALUES ('ISSUER_URL_CMS', '签发', 0, 'http://cmpc.hubpd.com/cmsapi/addarticle', '', 'CMS签发地址', 0, '2017-9-11 18:52:57', NULL, NULL);
