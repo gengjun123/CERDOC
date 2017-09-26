@@ -1,6 +1,48 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
 --2017-09-18 褚洪董
 -- mysql：
+CREATE
+ OR REPLACE VIEW VIEW_RESOURCE_INFO AS
+SELECT
+   `t`.`objectId` AS `objectId`,
+   `t`.`organizationId` AS `organizationId`,
+   `t`.`authorName` AS `authorName`,
+   `t`.`productStatus` AS `productStatus`,
+   `t`.`productRange` AS `productRange`,
+   `t`.`auditorId` AS `auditorId`,
+   `t`.`transmitId` AS `transmitId`,
+   `t`.`knowledge` AS `knowledge`,
+   `t`.`line` AS `line`,
+   `t`.`publisherId` AS `publisherId`,
+   `t`.`topicId` AS `topicId`,
+   `b`.`PUBLISHSTATUS` AS `PUBLISHSTATUS`,
+   `b`.`TOPICCREATERID` AS `TOPICCREATERID`,
+   `b`.`TOPICPARTICIPANTID` AS `TOPICPARTICIPANTID`,
+   `b`.`TOPICPRINCIPALID` AS `TOPICPRINCIPALID`,
+   `b`.`NAME` AS `name`,
+   `b`.`CCID` AS `ccid`,
+   `b`.`CREATED` AS `CREATED`,
+   `b`.`FOLDERID` AS `FOLDERID`,
+   `b`.`TYPE` AS `type`,
+   `b`.`CREATORID` AS `creatorid`,
+   `b`.`NEEDSIFTING` AS `needsifting`,
+   `b`.`DELETEFLAG` AS `deleteflag`,
+   `b`.`ROOTID` AS `Rootid`,
+   `b`.`COLLECTORIDS` AS `COLLECTORIDS`,
+   `b`.`lastModify` AS `lastModify`
+FROM
+   (
+      `view_resource_tmp` `t`
+      JOIN `com_basicinfo` `b` ON (
+         (
+            (`t`.`objectId` = `b`.`ID`)
+            AND (`b`.`DELETEFLAG` = 0)
+         )
+      )
+   );
+
+--2017-09-18 褚洪董
+-- mysql：
         CREATE
         OR REPLACE VIEW view_resource_tmp AS
         SELECT
