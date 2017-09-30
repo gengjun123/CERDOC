@@ -1,4 +1,8 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
+--2017-09-30 褚洪董  主分类排序
+-- mysql：
+alter table com_basicinfo add orderNumber int not null default 0;
+
 --2017-09-18 褚洪董
 -- mysql：
 CREATE
