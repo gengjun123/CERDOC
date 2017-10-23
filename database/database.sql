@@ -1,4 +1,67 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
+--2017-10-23 董兵
+INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_BF', '签发到北风网', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '签发到北风网', '1');
+INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_CMS', '签发到CMS', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '签发到CMS', '1');
+INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_REVOKE_BF', '北风网撤销签发', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '北风网撤销签发', '1');
+INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_REVOKE_CMD', 'CMS撤销签发', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', 'CMS撤销签发', '1');
+
+-- 稿件统计字段添加  2017-10-23 褚洪董
+INSERT INTO `scp_environment` VALUES ('ISSUER_KEY_BEIFENG', '签发', 0, '6304c011-420a-4b53-b8e1-ec7cb43a727b:b8b84a8e-abef-421f-98c1-c95816bca367', '', '北风网签发id:key', 0, '2017-10-20 18:53:26', NULL, NULL);
+INSERT INTO `scp_environment` VALUES ('ISSUER_URL_BEIFENG', '签发', 0, 'http://work.nmgnews.com.cn:8080/pub/nmg/Api!newsAccess.do', '', '北风网签发地址', 0, '2017-10-20 18:52:57', NULL, NULL);
+INSERT INTO `scp_environment` VALUES ('REVOKEISSUER_URL_BEIFENG', '签发', 0, 'http://work.nmgnews.com.cn:8080/pub/nmg/Api!deleteNews.do', '', '北风网撤销签发地址', 0, '2017-10-20 18:52:43', NULL, NULL);
+INSERT INTO `scp_environment` VALUES ('COLUMN_URL_BEIFENG', '签发', 0, 'http://work.nmgnews.com.cn:8080/pub/nmg/Api!columnInfo.do', '', '北风网获取栏目地址', 0, '2017-10-20 18:52:57', NULL, NULL);
+INSERT INTO `scp_environment` VALUES ('TEMPLATE_URL_BEIFENG', '签发', 0, 'http://work.nmgnews.com.cn:8080/pub/nmg/Api!templateInfo.do', '', '北风网获取模板地址', 0, '2017-10-20 18:52:43', NULL, NULL);
+
+alter table com_basicinfo add PEOPLEFLAG int not null default 0 comment '人民网是否签发';
+alter table com_basicinfo add BEIFENGFLAG int not null default 0 comment '北风网是否签发';
+alter table com_basicinfo add CMSFLAG int not null default 0 comment 'CMS是否签发';
+ 	CREATE
+        OR REPLACE VIEW VIEW_RESOURCE_INFO AS
+       SELECT
+       	`t`.`objectId` AS `objectId`,
+       	`t`.`organizationId` AS `organizationId`,
+       	`t`.`authorName` AS `authorName`,
+       	`t`.`productStatus` AS `productStatus`,
+       	`t`.`productRange` AS `productRange`,
+       	`t`.`auditorId` AS `auditorId`,
+       	`t`.`transmitId` AS `transmitId`,
+       	`t`.`knowledge` AS `knowledge`,
+       	`t`.`line` AS `line`,
+       	`t`.`publisherId` AS `publisherId`,
+       	`t`.`topicId` AS `topicId`,
+       	`b`.`PUBLISHSTATUS` AS `PUBLISHSTATUS`,
+       	`b`.`TOPICCREATERID` AS `TOPICCREATERID`,
+       	`b`.`TOPICPARTICIPANTID` AS `TOPICPARTICIPANTID`,
+       	`b`.`TOPICPRINCIPALID` AS `TOPICPRINCIPALID`,
+       	`b`.`NAME` AS `name`,
+       	`b`.`CCID` AS `ccid`,
+       	`b`.`CREATED` AS `CREATED`,
+       	`b`.`FOLDERID` AS `FOLDERID`,
+       	`b`.`TYPE` AS `type`,
+       	`b`.`CREATORID` AS `creatorid`,
+       	`b`.`NEEDSIFTING` AS `needsifting`,
+       	`b`.`DELETEFLAG` AS `deleteflag`,
+       	`b`.`ROOTID` AS `Rootid`,
+       	`b`.`COLLECTORIDS` AS `COLLECTORIDS`,
+       	`b`.`lastModify` AS `lastModify`,
+       	`b`.`PEOPLEFLAG` AS `PEOPLEFLAG`,
+        `b`.`BEIFENGFLAG` AS `BEIFENGFLAG`,
+        `b`.`CMSFLAG` AS `CMSFLAG`,
+        `u`.`ORGANIZATIONID` AS `deptId`
+       FROM
+       	(
+       		`view_resource_tmp` `t`
+       		JOIN `com_basicinfo` `b` ON (
+       			(
+       				(`t`.`objectId` = `b`.`ID`)
+       				AND (`b`.`DELETEFLAG` = 0)
+       			)
+       		)LEFT JOIN `upm_user` `u` ON (
+                `b`.`CREATORID` = `u`.`ID`
+            )
+       	);
+
+
 --2017-09-30 褚洪董  主分类排序
 -- mysql：
 alter table com_basicinfo add orderNumber int not null default 0;
