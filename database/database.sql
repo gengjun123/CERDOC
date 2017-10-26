@@ -1,4 +1,10 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
+--2017-10-26 褚洪董
+insert INTO ddm_line(id,name)VALUES('xhzss','通稿新闻线路');
+insert INTO ddm_line(id,name)VALUES('xhzbl','BL广播');
+insert INTO ddm_line(id,name)VALUES('xhzhh','海外中文专线');
+insert INTO ddm_line(id,name)VALUES('xhzyt','中文亚太线');
+
 --2017-10-23 董兵
 INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_BF', '签发到北方网', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '签发到北方网', '1');
 INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_CMS', '签发到CMS', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '签发到CMS', '1');
