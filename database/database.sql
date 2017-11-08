@@ -1,11 +1,187 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
---2017-10-26 褚洪董
+
+-- 2017-11-08 dongbing
+CREATE OR REPLACE VIEW VIEW_RESOURCE_INFO AS
+	SELECT
+		`cob_audio_product`.`OBJECTID` AS `objectId`,
+		`cob_audio_product`.`FIELD1088` AS `organizationId`,
+		`cob_audio_product`.`FIELD1077` AS `authorName`,
+		`cob_audio_product`.`FIELD1073` AS `productStatus`,
+		`cob_audio_product`.`FIELD1089` AS `productRange`,
+		`cob_audio_product`.`FIELD1091` AS `auditorId`,
+		`cob_audio_product`.`FIELD1092` AS `transmitId`,
+		`cob_audio_product`.`FIELD1093` AS `publisherId`,
+		`cob_audio_product`.`FIELD1070` AS `topicId`,
+		NULL AS `knowledge`,
+		NULL AS `line`,
+		NULL AS `pressTime`
+	FROM
+		`cob_audio_product`
+	UNION ALL
+	SELECT
+		`cob_doc_product`.`OBJECTID` AS `objectId`,
+		`cob_doc_product`.`FIELD1088` AS `organizationId`,
+		`cob_doc_product`.`FIELD1077` AS `authorName`,
+		`cob_doc_product`.`FIELD1073` AS `productStatus`,
+		`cob_doc_product`.`FIELD1089` AS `productRange`,
+		`cob_doc_product`.`FIELD1091` AS `auditorId`,
+		`cob_doc_product`.`FIELD1092` AS `transmitId`,
+		`cob_doc_product`.`FIELD1093` AS `publisherId`,
+		`cob_doc_product`.`FIELD1070` AS `topicId`,
+		NULL AS `knowledge`,
+		NULL AS `line`,
+		NULL AS `pressTime`
+	FROM
+		`cob_doc_product`
+	UNION ALL
+	SELECT
+		`cob_picture_product`.`OBJECTID` AS `objectId`,
+		`cob_picture_product`.`FIELD1088` AS `organizationId`,
+		`cob_picture_product`.`FIELD1077` AS `authorName`,
+		`cob_picture_product`.`FIELD1073` AS `productStatus`,
+		`cob_picture_product`.`FIELD1089` AS `productRange`,
+		`cob_picture_product`.`FIELD1091` AS `auditorId`,
+		`cob_picture_product`.`FIELD1092` AS `transmitId`,
+		`cob_picture_product`.`FIELD1093` AS `publisherId`,
+		`cob_picture_product`.`FIELD1070` AS `topicId`,
+		`cob_picture_product`.`FIELD1106` AS `knowledge`,
+		`cob_picture_product`.`FIELD1107` AS `line`,
+		`cob_picture_product`.`FIELD1079` AS `pressTime`
+	FROM
+		`cob_picture_product`
+	UNION ALL
+	SELECT
+		`cob_program_product`.`OBJECTID` AS `objectId`,
+		`cob_program_product`.`FIELD1088` AS `organizationId`,
+		`cob_program_product`.`FIELD1077` AS `authorName`,
+		`cob_program_product`.`FIELD1073` AS `productStatus`,
+		`cob_program_product`.`FIELD1089` AS `productRange`,
+		`cob_program_product`.`FIELD1091` AS `auditorId`,
+		`cob_program_product`.`FIELD1092` AS `transmitId`,
+		`cob_program_product`.`FIELD1093` AS `publisherId`,
+		`cob_program_product`.`FIELD1070` AS `topicId`,
+		NULL AS `knowledge`,
+		NULL AS `line`,
+		NULL AS `pressTime`
+	FROM
+		`cob_program_product`
+	UNION ALL
+	SELECT
+		`cob_attach`.`OBJECTID` AS `objectId`,
+		`cob_attach`.`FIELD1088` AS `organizationId`,
+		`cob_attach`.`FIELD1077` AS `authorName`,
+		`cob_attach`.`FIELD1073` AS `productStatus`,
+		`cob_attach`.`FIELD1089` AS `productRange`,
+		`cob_attach`.`FIELD1091` AS `auditorId`,
+		`cob_attach`.`FIELD1092` AS `transmitId`,
+		`cob_attach`.`FIELD1093` AS `publisherId`,
+		NULL AS `topicId`,
+		NULL AS `knowledge`,
+		NULL AS `line`,
+		NULL AS `pressTime`
+	FROM
+		`cob_attach`
+	UNION ALL
+	SELECT
+		`cob_fwbl`.`OBJECTID` AS `objectId`,
+		`cob_fwbl`.`FIELD1088` AS `organizationId`,
+		`cob_fwbl`.`FIELD1077` AS `authorName`,
+		`cob_fwbl`.`FIELD1073` AS `productStatus`,
+		`cob_fwbl`.`FIELD1089` AS `productRange`,
+		`cob_fwbl`.`FIELD1091` AS `auditorId`,
+		`cob_fwbl`.`FIELD1092` AS `transmitId`,
+		`cob_fwbl`.`FIELD1093` AS `publisherId`,
+		`cob_fwbl`.`FIELD1070` AS `topicId`,
+		`cob_fwbl`.`FIELD1106` AS `knowledge`,
+		`cob_fwbl`.`FIELD1107` AS `line`,
+		`cob_fwbl`.`FIELD1079` AS `pressTime`
+	FROM
+		`cob_fwbl`
+	UNION ALL
+	SELECT
+		`cob_vr_product`.`OBJECTID` AS `objectId`,
+		`cob_vr_product`.`FIELD1088` AS `organizationId`,
+		`cob_vr_product`.`FIELD1077` AS `authorName`,
+		`cob_vr_product`.`FIELD1073` AS `productStatus`,
+		`cob_vr_product`.`FIELD1089` AS `productRange`,
+		`cob_vr_product`.`FIELD1091` AS `auditorId`,
+		`cob_vr_product`.`FIELD1092` AS `transmitId`,
+		`cob_vr_product`.`FIELD1093` AS `publisherId`,
+		`cob_vr_product`.`FIELD1070` AS `topicId`,
+		NULL AS `knowledge`,
+		NULL AS `line`,
+		NULL AS `pressTime`
+	FROM
+		`cob_vr_product`
+	UNION ALL
+	SELECT
+		`cob_h5_product`.`OBJECTID` AS `objectId`,
+		`cob_h5_product`.`FIELD1088` AS `organizationId`,
+		`cob_h5_product`.`FIELD1077` AS `authorName`,
+		`cob_h5_product`.`FIELD1073` AS `productStatus`,
+		`cob_h5_product`.`FIELD1089` AS `productRange`,
+		`cob_h5_product`.`FIELD1091` AS `auditorId`,
+		`cob_h5_product`.`FIELD1092` AS `transmitId`,
+		`cob_h5_product`.`FIELD1093` AS `publisherId`,
+		`cob_h5_product`.`FIELD1070` AS `topicId`,
+		NULL AS `knowledge`,
+		NULL AS `line`,
+		NULL AS `pressTime`
+	FROM
+		`cob_h5_product`;
+
+CREATE OR REPLACE VIEW VIEW_RESOURCE_INFO AS
+	SELECT
+		`t`.`objectId` AS `objectId`,
+		`t`.`organizationId` AS `organizationId`,
+		`t`.`authorName` AS `authorName`,
+		`t`.`productStatus` AS `productStatus`,
+		`t`.`productRange` AS `productRange`,
+		`t`.`auditorId` AS `auditorId`,
+		`t`.`transmitId` AS `transmitId`,
+		`t`.`knowledge` AS `knowledge`,
+		`t`.`line` AS `line`,
+		`t`.`pressTime` AS `pressTime`,
+		`t`.`publisherId` AS `publisherId`,
+		`t`.`topicId` AS `topicId`,
+		`b`.`PUBLISHSTATUS` AS `PUBLISHSTATUS`,
+		`b`.`TOPICCREATERID` AS `TOPICCREATERID`,
+		`b`.`TOPICPARTICIPANTID` AS `TOPICPARTICIPANTID`,
+		`b`.`TOPICPRINCIPALID` AS `TOPICPRINCIPALID`,
+		`b`.`NAME` AS `name`,
+		`b`.`CCID` AS `ccid`,
+		`b`.`CREATED` AS `CREATED`,
+		`b`.`FOLDERID` AS `FOLDERID`,
+		`b`.`TYPE` AS `type`,
+		`b`.`CREATORID` AS `creatorid`,
+		`b`.`NEEDSIFTING` AS `needsifting`,
+		`b`.`DELETEFLAG` AS `deleteflag`,
+		`b`.`ROOTID` AS `Rootid`,
+		`b`.`COLLECTORIDS` AS `COLLECTORIDS`,
+		`b`.`LASTMODIFY` AS `lastModify`,
+		`b`.`PEOPLEFLAG` AS `PEOPLEFLAG`,
+		`b`.`BEIFENGFLAG` AS `BEIFENGFLAG`,
+		`b`.`CMSFLAG` AS `CMSFLAG`
+	FROM
+		(
+			`view_resource_tmp` `t`
+			JOIN `com_basicinfo` `b` ON (
+				(
+					(`t`.`objectId` = `b`.`ID`)
+					AND (`b`.`DELETEFLAG` = 0)
+				)
+			)
+		);
+
+
+
+-- 2017-10-26 褚洪董
 insert INTO ddm_line(id,name)VALUES('xhzss','通稿新闻线路');
 insert INTO ddm_line(id,name)VALUES('xhzbl','BL广播');
 insert INTO ddm_line(id,name)VALUES('xhzhh','海外中文专线');
 insert INTO ddm_line(id,name)VALUES('xhzyt','中文亚太线');
 
---2017-10-23 董兵
+-- 2017-10-23 董兵
 INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_BF', '签发到北方网', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '签发到北方网', '1');
 INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_CMS', '签发到CMS', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '签发到CMS', '1');
 INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_ASSIGN_REVOKE_BF', '北方网撤销签发', '-', 1, '可签发某一个状态的权限', 0, NULL, NULL, 'admin', 1, 'product', '北方网撤销签发', '1');
