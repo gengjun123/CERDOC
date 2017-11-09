@@ -1,7 +1,7 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
 
 -- 2017-11-08 dongbing
-CREATE OR REPLACE VIEW VIEW_RESOURCE_INFO AS
+CREATE OR REPLACE VIEW VIEW_RESOURCE_TMP AS
 	SELECT
 		`cob_audio_product`.`OBJECTID` AS `objectId`,
 		`cob_audio_product`.`FIELD1088` AS `organizationId`,
