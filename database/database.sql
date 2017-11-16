@@ -1,4 +1,6 @@
 -- 添加数据库脚本时，以['-- ' + 当前日期 + 操作人]为开头，下面跟数据库脚本。脚本中不可以加额外字符，以方便运维人员直接复制。
+--2017-11-16 zhaoyangkun
+INSERT INTO `UPM_PRIVILEGE` VALUES ('PID_PRODUCT_STATUS_NEWSPAPER_EDITORIAL', '送报纸采编', '-', 1, '送报纸采编', 0, NULL, NULL, 'admin', 1, 'product', '送报纸采编', '1');
 
 -- 2017-11-08 dongbing
 CREATE OR REPLACE VIEW VIEW_RESOURCE_TMP AS
