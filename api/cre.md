@@ -1255,7 +1255,8 @@ isAttachment|boolean|是否是附件类型（默认否）|否
 ~~~
 {
   "fileId": "fjq9348fj823u49f",
-  "fileName": "ffj09-fj349fj-jf34jf0f-f203fj_IMAGE_0.png",
+  "fileName": "ffj09-fj349fj-jf34jf0f-f203fj_IMAGE_0.jpg",
+  "originalName":"测试图片.jpg",
   "fileTypeId":"ATTACHMENT",
   "extension":"jpg",
   "fileSize":20000,
@@ -1268,6 +1269,7 @@ isAttachment|boolean|是否是附件类型（默认否）|否
 resourceId|string|稿件id(该id在客户端维护，此时cre可能并未存在该资源)|是
 fileId|string|文件id|是
 fileName|string|文件名称|是
+originalName|string|文件原名称|是
 fileTypeId|string|文件类型ID|是
 extension|string|文件后缀名|是
 fileSize|int|文件大小|是
